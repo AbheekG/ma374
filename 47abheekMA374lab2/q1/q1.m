@@ -1,5 +1,7 @@
 function q1
 	clear; close all;
+	global image_num;
+	image_num = 1;
 	S0 = 100;
 	K = 100;
 	T = 1;
@@ -8,7 +10,14 @@ function q1
 	sig = 0.2;
 
 	% Set 1
-	fprintf('\n\nSet 2\n');
+	fprintf('\n\nSet 1\n');
+	q1_part(S0, K, T, r, M, sig, @U1, @D1, 'S(0)');
+	q1_part(S0, K, T, r, M, sig, @U1, @D1, 'K');
+	q1_part(S0, K, T, r, M, sig, @U1, @D1, 'r');
+	q1_part(S0, K, T, r, M, sig, @U1, @D1, 'sigma');
+	q1_part(S0, K - 5, T, r, M, sig, @U1, @D1, 'M');
+	q1_part(S0, K, T, r, M, sig, @U1, @D1, 'M');
+	q1_part(S0, K + 5, T, r, M, sig, @U1, @D1, 'M');
 
 	% Set 2
 	fprintf('\n\nSet 2\n');
@@ -23,6 +32,7 @@ end
 
 function q1_part(S0, K, T, r, M, sig, U, D, part)
 	n = 100;
+	global image_num;
 	
 	S0_ = ones(1, n) * S0;
 	K_ = ones(1, n) * K;
@@ -76,7 +86,9 @@ function q1_part(S0, K, T, r, M, sig, U, D, part)
 	end
 
 	figure; plot(X, V0_call); title(['European Call price (at time 0) vs ', part]); xlabel(part); ylabel('European Call price (at time 0)');
+	saveas(gcf, sprintf('q1_%d.png', image_num)); image_num = image_num + 1;
 	figure; plot(X, V0_put); title(['European Put price (at time 0) vs ', part]); xlabel(part); ylabel('European Put price (at time 0)');
+	saveas(gcf, sprintf('q1_%d.png', image_num)); image_num = image_num + 1;
 end
 
 function [z] = euro_call(x, y)
