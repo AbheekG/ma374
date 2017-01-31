@@ -40,7 +40,7 @@ end
 
 function q1_part2a(S0, K, T, r, sig);
 	fprintf('\n\nPart 2a\t\tM increased in steps of 1\n');
-	M = 1:1:40;
+	M = 1:1:100;
 	V0_put = [];
 	V0_call = [];
 
@@ -69,7 +69,7 @@ end
 
 function q1_part2b(S0, K, T, r, sig);
 	fprintf('\n\nPart 2b\t\tM increased in steps of 5\n');
-	M = 1:5:200;
+	M = 1:5:500;
 	V0_put = [];
 	V0_call = [];
 
