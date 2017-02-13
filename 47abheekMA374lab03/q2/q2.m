@@ -14,7 +14,7 @@ end
 
 function q2_part1(S0, T, r, sig);
 	fprintf('\n\nPart 1\n');
-	M = [5, 10, 15];
+	M = [5, 7, 10, 12, 15, 17];
 	V0 = [];
 	global V;
 
@@ -81,7 +81,7 @@ function q2_part3(S0, T, r, sig);
 	end
 
 	t = 0:dt:T;
-	fprintf('\n\nPart 3\t\tM = 20');
+	fprintf('\n\nPart 3\t\tM = 5');
 	fprintf('\nt (time)\tLookback option values at time t');
 	for i = 1:length(t)
 		fprintf('\n%f\t', t(i));

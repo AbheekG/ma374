@@ -14,7 +14,7 @@ end
 
 function q3_part1(S0, T, r, sig);
 	fprintf('\n\nPart 1\n');
-	M = [5, 10, 25];
+	M = [5, 10, 15, 20, 25, 30];
 	V0 = [];
 	global V;
 
@@ -40,7 +40,7 @@ end
 
 function q3_part2(S0, T, r, sig);
 	fprintf('\n\nPart 2\t\tM increased in steps of 1\n');
-	M = 1:5:25;
+	M = 1:2:25;
 	V0 = [];
 	global V;
 
@@ -81,7 +81,7 @@ function q3_part3(S0, T, r, sig);
 	end
 
 	t = 0:dt:T;
-	fprintf('\n\nPart 3\t\tM = 20');
+	fprintf('\n\nPart 3\t\tM = 5');
 	fprintf('\nt (time)\tLookback option values at time t');
 	for i = 1:length(t)
 		fprintf('\n%f\t', t(i));
@@ -130,6 +130,4 @@ function [V0] = valuation(VT, u, d, r, dt, S0, M0, m)
 		end
 	end
 	V0 = V{1};
-
-	V
 end
