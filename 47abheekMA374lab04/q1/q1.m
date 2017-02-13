@@ -14,6 +14,8 @@ function q1
 	q1_part3(f, g, 0.15);
 	q1_part4(f, g, 0.18);
 	q1_part5(f, g, h, w_m, mu_m, sig_m);
+	q1_part6(0.10, r, w_m, mu_m, sig_m);
+	q1_part6(0.25, r, w_m, mu_m, sig_m);
 
 end
 
@@ -56,6 +58,8 @@ function q1_part1(g)
 	end
 
 	plot(sig, mu);
+	title('Return vs Risk'); xlabel('Risk'); ylabel('Return');
+	legend('Efficient Frontier');
 end
 
 function q1_part2(f, g)
@@ -140,30 +144,20 @@ function q1_part5(f, g, h, w_m, mu_m, sig_m)
 	% figure; plot(X, V0_call); title(['European Call price (at time 0) vs ', part]); xlabel(part); ylabel('European Call price (at time 0)');
 	% saveas(gcf, sprintf('q1_%d.png', image_num)); image_num = image_num + 1;
 	figure; plot(sig, mu); hold on;
+	title('Return vs Risk'); xlabel('Risk'); ylabel('Return');
 
 	sig = 0:0.001:0.17;
-	h(1);
 	plot(sig, h(sig));
+	legend('Efficient frontier', 'Capital Market Line');
 end
 
-function q1_part6(w_m, mu_m, sig_m)
-	fprintf('\nMixed Portfolio with Risk 10%\nWeights\t\t\t\t\tReturn\t\tRisk\n')
+function q1_part6(sig, r, w_m, mu_m, sig_m)
+	ratio = sig / sig_m;
+	fprintf('\nMixed Portfolio with Risk = %f\nRisky Weights\t\t\t\tRisk Free Weight\tReturn\t\tRisk\n', sig)
 	fprintf('[')
 	for j = 1:length(w_m)
-		fprintf('%f, ', double(w_m(j)));
+		fprintf('%f, ', ratio * double(w_m(j)));
 	end
-	fprintf(']\t%f\t%f\n', mu_m, double(sig_m));
+	fprintf(']\t%f\t\t%f\t%f\n', 1-ratio, r*(1-ratio) + ratio*mu_m, sig);
 
-	mu = 0:0.001:0.2;
-	sig = zeros(size(mu));
-	for i = 1:length(sig)
-		sig(i) = g(mu(i));
-	end
-	% figure; plot(X, V0_call); title(['European Call price (at time 0) vs ', part]); xlabel(part); ylabel('European Call price (at time 0)');
-	% saveas(gcf, sprintf('q1_%d.png', image_num)); image_num = image_num + 1;
-	figure; plot(sig, mu); hold on;
-
-	sig = 0:0.001:0.17;
-	h(1);
-	plot(sig, h(sig));
 end
