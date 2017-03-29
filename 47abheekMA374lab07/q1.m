@@ -1,6 +1,6 @@
 function q1
-	@C
-	@P
+	@C;
+	@P;
 end
 
 function [y] = C(t, s, T, K, r, sig)

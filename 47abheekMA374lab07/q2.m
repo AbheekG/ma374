@@ -59,7 +59,13 @@ function surface_plot(V, stock, time, opt, T, K, r, sig)
 		Z = [Z; Y];
 	end
 
-	surf(stock, time, Z);
+	data = [];
+	for i = 1:length(stock)
+		for j = 1:length(time)
+			data = [data; stock(i), time(j), Z(j, i)];
+		end
+	end
+	plot3(data(:, 1), data(:, 2), data(:, 3), 'o');
 	if opt == 'P'
 		title('Put Option Value');
 	else
@@ -68,6 +74,6 @@ function surface_plot(V, stock, time, opt, T, K, r, sig)
 	xlabel('Stock Price')
 	ylabel('Time');
 	zlabel('Derivative Price');
-	legend('Surface plot - Price of derivative vs (t, S(t))');
+	legend('Plot - Price of derivative vs (t, S(t))');
 	hold off;
 end
